@@ -1,0 +1,92 @@
+{% extends 'base.html' %}
+
+{% block page_content %}
+        <div class="wrapper">
+          <form action="#" class="rental-order-form">
+            <div id="event-information" class="event-information"></div>
+            <div class="contact-information">
+              <h3 class="form-header">Contact Information</h3>
+              <ul class="contact-list form-list">
+                <li>
+                  <div class="flex">
+                    <div class="flex-3">
+                      <label><span>Contact Name &amp; Company</span>
+                        <input type="text" name="contact_name_and_company" placeholder="Cosmo Kramer - Kramerica Industries, Inc.">
+                      </label>
+                    </div>
+                    <div class="flex-1">
+                      <label><span>Booth Name or #</span>
+                        <input type="text" name="booth_name_or_number" placeholder="Bladder System, or #35">
+                      </label>
+                    </div>
+                  </div>
+                </li>
+                <li>
+                  <label><span>Billing Address</span>
+                    <input type="text" name="billing_address" placeholder="12345 Main St.">
+                  </label>
+                </li>
+                <li>
+                  <div class="flex">
+                    <div class="flex-4">
+                      <label><span>City</span>
+                        <input type="text" name="city" placeholder="Brooklynn">
+                      </label>
+                    </div>
+                    <div class="flex-1">
+                      <label><span>State</span>
+                        <input type="text" name="state" placeholder="New York">
+                      </label>
+                    </div>
+                    <div class="flex-2">
+                      <label><span>ZIP</span>
+                        <input type="text" name="" placeholder="10279">
+                      </label>
+                    </div>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="rental-equipment-container">
+              <h3 class="form-header">Rental Equipment</h3>
+              <div id="rental-equipment" class="rental-equipment">
+                <table id="rental-equipment-table" class="equipment-table">
+                  <tr id="rental-equipment-headers"></tr>
+                </table>
+              </div>
+            </div>
+            <div class="order-total-container">
+              <div class="equipment-header">&nbsp;</div>
+              <p><span>Total &nbsp;</span><span id="total"></span></p>
+            </div>
+          </form>
+        </div>
+        {% raw %}
+        <div id="templates">
+          <script id="event-information-tpl" type="text/x-handlebars-template">
+            <h2 class="t3 event-title">{{event_title}}</h2>
+            <p class="event-date">{{event_date_start}} - {{event_date_end}}</p>
+          </script>
+          <script id="rental-equipment-headers-tpl" type="text/x-handlebars-template">
+            <th>Quantity</th>
+            <th>Description</th>
+            <th>Before {{before_rate_deadline}}</th>
+            <th>After {{after_rate_deadline}}</th>
+            <th>Total</th>
+          </script>
+          <script id="rental-equipment-tpl" type="text/x-handlebars-template">
+            {{#each rental_equipment}}
+            <tr data-equipment-group="{{equipment_group}}" data-before-rate="{{before_rate}}" data-after-rate="{{after_rate}}">
+              <td>
+                <input type="input" name="quanitity-item-1">
+              </td>
+              <td>{{equipment_description}}</td>
+              <td>{{before_rate}}</td>
+              <td>{{after_rate}}</td>
+              <td><span class="total">&nbsp;</span></td>
+            </tr>
+            {{/each}}
+          </script>
+        </div>
+        {% endraw %}
+{% endblock %}
